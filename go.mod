@@ -4,7 +4,7 @@ go 1.21.1
 
 require (
 	github.com/caarlos0/env/v6 v6.10.1
-	github.com/go-playground/validator v9.31.0+incompatible
+	github.com/go-chi/chi/v5 v5.0.10
 	github.com/go-playground/validator/v10 v10.15.4
 	github.com/google/go-cmp v0.5.9
 	golang.org/x/sync v0.3.0
@@ -19,5 +19,4 @@ require (
 	golang.org/x/net v0.8.0 // indirect
 	golang.org/x/sys v0.6.0 // indirect
 	golang.org/x/text v0.8.0 // indirect
-	gopkg.in/go-playground/assert.v1 v1.2.1 // indirect
 )
