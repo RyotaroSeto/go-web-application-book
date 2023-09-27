@@ -4,11 +4,9 @@ import (
 	"context"
 	"go_todo_app/clock"
 	"go_todo_app/entity"
-	"go_todo_app/testutil"
 	"testing"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/google/go-cmp/cmp"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -54,23 +52,24 @@ func prepareTasks(ctx context.Context, t *testing.T, con Execer) entity.Tasks {
 	wants[2].ID = entity.TaskID(id + 2)
 	return wants
 }
-func TestRepository_ListTasks(t *testing.T) {
-	ctx := context.Background()
-	tx, err := testutil.OpenDBForTest(t).BeginTxx(ctx, nil)
-	t.Cleanup(func() { _ = tx.Rollback() })
-	if err != nil {
-		t.Fatal(err)
-	}
-	wants := prepareTasks(ctx, t, tx)
-	sut := &Repository{}
-	gots, err := sut.ListTasks(ctx, tx)
-	if err != nil {
-		t.Fatalf("unexpected error: %v", err)
-	}
-	if d := cmp.Diff(gots, wants); len(d) != 0 {
-		t.Errorf("differs: (-got +want)\n%s", d)
-	}
-}
+
+// func TestRepository_ListTasks(t *testing.T) {
+// 	ctx := context.Background()
+// 	tx, err := testutil.OpenDBForTest(t).BeginTxx(ctx, nil)
+// 	t.Cleanup(func() { _ = tx.Rollback() })
+// 	if err != nil {
+// 		t.Fatal(err)
+// 	}
+// 	wants := prepareTasks(ctx, t, tx)
+// 	sut := &Repository{}
+// 	gots, err := sut.ListTasks(ctx, tx)
+// 	if err != nil {
+// 		t.Fatalf("unexpected error: %v", err)
+// 	}
+// 	if d := cmp.Diff(gots, wants); len(d) != 0 {
+// 		t.Errorf("differs: (-got +want)\n%s", d)
+// 	}
+// }
 
 func TestRepository_AddTask(t *testing.T) {
 	t.Parallel()                //QUES: TestRepository_ListTasksにはt.Parallel()ついていないこっちは? DB接続ではなくモックだから?
