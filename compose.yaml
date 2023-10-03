@@ -18,6 +18,7 @@ services:
       - "18000:8080"
     depends_on:
       - todo-db
+      - todo-redis
 
   todo-db:
     image: mysql:8.0.29
@@ -33,5 +34,15 @@ services:
       - $PWD/_tools/mysql/conf.d:/etc/mysql/conf.d:cached
     ports:
       - "33306:3306"
+
+  todo-redis:
+    image: "redis:latest"
+    container_name: todo-redis
+    ports:
+      - "36379:6379"
+    volumes:
+      - todo-redis-data:/data
+
 volumes:
   todo-db-data:
+  todo-redis-data:
