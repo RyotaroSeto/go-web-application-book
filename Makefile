@@ -8,3 +8,6 @@ migrate:  ## Execute migration
 
 test: ## Execute tests
 	go test -race -shuffle=on ./...
+
+generate: ## Generate codes
+	go generate ./...
