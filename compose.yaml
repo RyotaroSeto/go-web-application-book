@@ -16,6 +16,9 @@ services:
       - .:/app
     ports:
       - "18000:8080"
+    depends_on:
+      - todo-db
+
   todo-db:
     image: mysql:8.0.29
     platform: linux/amd64
