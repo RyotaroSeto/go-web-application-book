@@ -122,6 +122,7 @@ func (j *JWTer) FillContext(r *http.Request) (*http.Request, error) {
 	if err != nil {
 		return nil, err
 	}
+	// 質問:L110行目と同様、何故2回するの?
 	uid, err := j.Store.Load(r.Context(), token.JwtID())
 	if err != nil {
 		return nil, err
