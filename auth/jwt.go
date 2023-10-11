@@ -130,7 +130,7 @@ func (j *JWTer) FillContext(r *http.Request) (*http.Request, error) {
 	ctx := SetUserID(r.Context(), uid)
 
 	ctx = SetRole(ctx, token)
-	clone := r.Clone(ctx)
+	clone := r.Clone(ctx) // 質問:これは何をしているか?
 	return clone, nil
 }
 
