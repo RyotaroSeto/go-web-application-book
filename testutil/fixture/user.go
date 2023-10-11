@@ -8,6 +8,8 @@ import (
 )
 
 // https://engineering.mercari.com/blog/entry/20220411-42fc0ba69c/
+
+// https://engineering.mercari.com/blog/entry/20230630-32980896a4/ 同じ人が最近フィクスチャの投稿
 func User(u *entity.User) *entity.User {
 	result := &entity.User{
 		ID:       entity.UserID(rand.Int()),
