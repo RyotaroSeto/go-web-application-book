@@ -135,7 +135,7 @@ func (j *JWTer) FillContext(r *http.Request) (*http.Request, error) {
 }
 
 func SetUserID(ctx context.Context, uid entity.UserID) context.Context {
-	return context.WithValue(ctx, userIDKey{}, uid)
+	return context.WithValue(ctx, userIDKey{}, uid) // 質問:ctxにidをセットすると何がよい?
 }
 
 func GetUserID(ctx context.Context) (entity.UserID, bool) {
